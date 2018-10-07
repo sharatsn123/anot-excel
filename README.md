@@ -1,11 +1,8 @@
 # anot-excel
-Annotation based excel export.
-The application helps in creating excel sheet by just passing a list of objects with proper annotations.
+anot-excel helps in creating excel sheet by just passing a list of objects.
 The data in the list will be compared with annotations in the class to create excel.
 Configurations currently supported are filename, names of columns, position of columns, sorting and grouping the columns.
-Examples are provided
-
-
+Consider the following class. (More examples are provided in code)
 
 	@Excel(name = "sortAndGroup")
 	public class SortAndGroupVo {
@@ -33,4 +30,46 @@ Meaning of Annotations
    4) sort specifies whether that column should be sorted in excel. This is Optional.
    5) sortPriority is used when multiple columns need to be sorted. In the above example, rows will be sorted by year first as it has higher priority(smaller the number, higher will be the priority). But if two years are same, name will be used to sort the rows
    
+After creating a list of objects based on above class, i.e SortAndGroupVo, pass it to the generator to get the excel.
+	
+	List list = new ArrayList();
+	list.add(new SortAndGroupVo("Abc", 9, "Oxford"));
+	list.add(new SortAndGroupVo("Def", 5, "Oxford"));
+	list.add(new SortAndGroupVo("Ghi", 7, "Oxford"));
+	list.add(new SortAndGroupVo("Jkl", 5, "Oxford"));
+	list.add(new SortAndGroupVo("Mno", 1, "Oxford"));
+	AnotExcelGenerator simpleExcelGenerator = new AnotExcelGenerator();
+	simpleExcelGenerator.generateExcel(list);
+
+
+Excel obtained :
+
+<table>
+<tr>
+	<td>School</td>
+	<td>Year</td>
+	<td>Name</td>
+</tr>
+	<tr>
+		<td rowspan=5>Oxford</td>
+		<td>1</td>
+		<td>Mno</td>
+	</tr>	
+	<tr>
+		<td>5</td>
+		<td>Def</td>
+	</tr>
+	<tr>
+		<td>5</td>
+		<td>Jkl</td>
+	</tr>
+	<tr>
+		<td>7</td>
+		<td>Ghi</td>
+	</tr>
+	<tr>
+		<td>9</td>
+		<td>Abc</td>
+	</tr>
+</table>
 
