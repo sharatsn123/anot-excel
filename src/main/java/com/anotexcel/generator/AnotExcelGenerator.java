@@ -20,7 +20,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
@@ -38,9 +37,9 @@ import com.anotexcel.beans.ExcelProperties;
 import com.anotexcel.beans.SortableList;
 import com.anotexcel.exception.AnotExcelException;
 
-public class AnotExcelGenerator<T> {
+public class AnotExcelGenerator {
 
-	public void generateExcel(List<T> list) throws Exception {
+	public void generateExcel(List list) throws Exception {
 		Class<?> objectClass;
 		if (list != null && !list.isEmpty()) {
 			objectClass = list.get(0).getClass();
@@ -52,7 +51,7 @@ public class AnotExcelGenerator<T> {
 		createExcel(excelData, excelProperties);
 	}
 
-	public void generateExcel(List<T> list, String filePath) throws Exception {
+	public void generateExcel(List list, String filePath) throws Exception {
 		Class<?> objectClass;
 		if (list != null && !list.isEmpty()) {
 			objectClass = list.get(0).getClass();
@@ -100,7 +99,7 @@ public class AnotExcelGenerator<T> {
 				excelFileName);
 	}
 
-	private ExcelData getExcelData(ExcelProperties excelProperties, List<T> list)
+	private ExcelData getExcelData(ExcelProperties excelProperties, List list)
 			throws IllegalAccessException, AnotExcelException {
 
 		List<List<String>> dataList = new ArrayList();
@@ -120,7 +119,7 @@ public class AnotExcelGenerator<T> {
 		;
 		List<String> rowData;
 		String dataValue;
-		for (T o : list) {
+		for (Object o : list) {
 			rowData = new ArrayList();
 			for (Field field : allColumns) {
 				dataValue = field.get(o).toString();
