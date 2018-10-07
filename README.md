@@ -35,9 +35,9 @@ After creating a list of objects based on above class, i.e SortAndGroupVo, pass 
 	List list = new ArrayList();
 	list.add(new SortAndGroupVo("Abc", 9, "Oxford"));
 	list.add(new SortAndGroupVo("Def", 5, "Oxford"));
-	list.add(new SortAndGroupVo("Ghi", 7, "Oxford"));
-	list.add(new SortAndGroupVo("Jkl", 5, "Oxford"));
-	list.add(new SortAndGroupVo("Mno", 1, "Oxford"));
+	list.add(new SortAndGroupVo("Ghi", 1, "Oxford"));
+	list.add(new SortAndGroupVo("Jkl", 5, "Harvard"));
+	list.add(new SortAndGroupVo("Mno", 1, "Harvard"));
 	AnotExcelGenerator simpleExcelGenerator = new AnotExcelGenerator();
 	simpleExcelGenerator.generateExcel(list);
 
@@ -51,21 +51,22 @@ Excel obtained :
 	<td>Name</td>
 </tr>
 	<tr>
-		<td rowspan=5>Oxford</td>
+		<td rowspan=2>Harvard</td>
 		<td>1</td>
 		<td>Mno</td>
 	</tr>	
 	<tr>
 		<td>5</td>
-		<td>Def</td>
-	</tr>
-	<tr>
-		<td>5</td>
 		<td>Jkl</td>
 	</tr>
 	<tr>
-		<td>7</td>
+		<td rowspan=3>Oxford</td>
+		<td>1</td>
 		<td>Ghi</td>
+	</tr>
+	<tr>
+		<td>5</td>
+		<td>Def</td>
 	</tr>
 	<tr>
 		<td>9</td>
